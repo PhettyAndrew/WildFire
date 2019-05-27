@@ -1,17 +1,14 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
-<link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet'>
-
-<div class="container">
+{% extends 'eapp/base.html' %}
+{% block title %} WildFire: Home {% endblock %}
+{% block content %}
    <div class="row">
        {% for event in events %}
        <div class="col-sm-4">
-           <div class="panel panel-default" style="background: deepskyblue;">
+           <div class="panel panel-default" style="background-color: lightblue; margin:10px;">
                <div class="row">
                    <div class="col-sm-5">
-                       <a href="#">
-                           <img src="{{event.banner.url}}" style="heigth:200px; width: 200px; margin:10px" class="img img-thumbnail">
+                       <a href="{% url 'eapp:details' event.id %}">
+                           <img src="{{event.banner.url}}" style="height:150px; width: 250px; margin:10px" class="img img-thumbnail">
                        </a>
                    </div>
                    <div class="col-sm-7">
@@ -23,4 +20,4 @@
        </div>
        {% endfor %}
    </div>
-</div>
+{% endblock %}

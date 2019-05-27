@@ -1,0 +1,45 @@
+{% extends 'eapp/base.html' %}
+{% block title %} WildFire: {{event.name}} {% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="panel panel-info" >
+                <img src="{{event.banner.url}}" class="img img-thumbnail img-responsive">
+                <h4 style="font-family:Pacifico; margin:5px;">{{event.name}}</h4>
+                <h4 style="font-family:Lora; margin:5px;">{{event.date}} {{event.time}}</h4>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="panel panel-info" style="margin: 5px;">
+                <div class="panel panel-header" style="margin: 10px;">
+                    <h3 style="font-family:Baloo Bhai; text-align:center; margin:10px;">{{event.name}}</h3>
+                    <h5 style="font-family: Prompt; margin:10px;">
+                        {{event.description}}
+                    </h5>
+                </div>
+                <div class="panel panel-body" style="margin: 10px;">
+                    <h4 style="font-family:Pacifico; float:right; margin-left:275px;">Contact:<p style="font-family: Lora">{{event.contact}}</p></h4>
+                    <h4 style="font-family:Pacifico; float:right">Charges:<p style="font-family: Lora">{{event.charges}}</p></h4>
+                    <h4 style="font-family:Pacifico;">Venue:<p style="font-family: Lora">{{event.venue}}</p></h4>
+                </div>
+                <div class="panel panel-footer panel-info" style="margin:10px;">
+                    <h4 style="font-family:Baloo Bhai">Comments</h4>
+                        {% for c in event.comment_set.all %}
+                            <p><h5>"{{c.comment}}" <i style="font-family:Oswald">Comment by:    <a href=""> <u>{{c.user_name}} </u></a></i></h5></p>
+                        {% endfor %}
+                </div>
+                <div class="panel panel-footer panel-info" style="margin:10px; margin-left:560px;">
+                    <a href="{% url 'eapp:comment' event.id %}">
+                        <i class="fas fa-comments"> Comment</i>
+                    </a>
+                    <a href="{% url 'eapp:login_edit' event.id %}" style="margin-right: 20px;">
+                        <i class="fas fa-edit" style="margin-left:20px;"> Edit</i>
+                    </a>
+                    <a href="{% url 'eapp:delete' event.id %}" style="" onclick="return confirm('Are you sure you want to delete this event?')">
+                        <i class="fas fa-trash"> Delete</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
